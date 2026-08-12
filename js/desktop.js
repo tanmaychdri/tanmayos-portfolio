@@ -136,6 +136,13 @@ const Desktop = (() => {
     if (!container) return;
 
     container.innerHTML = "";
+    
+    const savedPositions = JSON.parse(localStorage.getItem("tanmayos-icon-positions") || "{}");
+    const GRID_W = 80;
+    const GRID_H = 100;
+    
+    let startX = 20;
+    let startY = 20;
 
     DESKTOP_APPS.forEach((app) => {
       const iconEl = document.createElement("div");
@@ -146,12 +153,90 @@ const Desktop = (() => {
         <div class="icon-label">${app.label}</div>
       `;
 
+      let posX = startX;
+      let posY = startY;
+
+      if (savedPositions[app.id]) {
+        posX = savedPositions[app.id].x;
+        posY = savedPositions[app.id].y;
+      } else {
+        startY += GRID_H;
+        if (startY > window.innerHeight - 150) {
+          startY = 20;
+          startX += GRID_W;
+        }
+      }
+
+      iconEl.style.left = posX + "px";
+      iconEl.style.top = posY + "px";
+      
+      let moved = false;
+      
+      iconEl.addEventListener("mousedown", (e) => {
+        if (e.button !== 0) return; 
+        let isDragging = false;
+        let startMouseX = e.clientX;
+        let startMouseY = e.clientY;
+        let startIconX = parseInt(iconEl.style.left || 0, 10);
+        let startIconY = parseInt(iconEl.style.top || 0, 10);
+        
+        moved = false;
+        iconEl.style.zIndex = 100;
+
+        function onMouseMove(moveEvent) {
+          const dx = moveEvent.clientX - startMouseX;
+          const dy = moveEvent.clientY - startMouseY;
+          
+          if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
+              isDragging = true;
+              moved = true;
+          }
+          
+          if (isDragging) {
+            iconEl.style.left = (startIconX + dx) + "px";
+            iconEl.style.top = (startIconY + dy) + "px";
+          }
+        }
+
+        function onMouseUp(upEvent) {
+          iconEl.style.zIndex = "";
+          document.removeEventListener("mousemove", onMouseMove);
+          document.removeEventListener("mouseup", onMouseUp);
+          
+          if (isDragging) {
+              let finalX = parseInt(iconEl.style.left || 0, 10);
+              let finalY = parseInt(iconEl.style.top || 0, 10);
+              
+              // Snap to grid
+              finalX = Math.round((finalX - 20) / GRID_W) * GRID_W + 20; 
+              finalY = Math.round((finalY - 20) / GRID_H) * GRID_H + 20;
+              
+              finalX = Math.max(20, Math.min(finalX, window.innerWidth - GRID_W));
+              finalY = Math.max(20, Math.min(finalY, window.innerHeight - GRID_H - 40));
+
+              iconEl.style.left = finalX + "px";
+              iconEl.style.top = finalY + "px";
+
+              const positions = JSON.parse(localStorage.getItem("tanmayos-icon-positions") || "{}");
+              positions[app.id] = { x: finalX, y: finalY };
+              localStorage.setItem("tanmayos-icon-positions", JSON.stringify(positions));
+              
+              setTimeout(() => { moved = false; }, 0);
+          }
+        }
+
+        document.addEventListener("mousemove", onMouseMove);
+        document.addEventListener("mouseup", onMouseUp);
+      });
+
       iconEl.addEventListener("click", (e) => {
+        if (moved) return;
         e.stopPropagation();
         selectIcon(iconEl);
       });
 
       iconEl.addEventListener("dblclick", (e) => {
+        if (moved) return;
         e.stopPropagation();
         launchApp(app.id);
       });
