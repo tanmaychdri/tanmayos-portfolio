@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>TanmayOS — Portfolio</title>
+  <meta name="description"
+    content="Tanmay's interactive portfolio, designed as a custom Linux desktop environment. Explore skills, projects, and experience through an OS-style interface with a working terminal." />
+  <meta name="keywords" content="Tanmay, portfolio, developer, full-stack, Linux, OS, terminal, interactive" />
+  <meta name="author" content="Tanmay" />
+  <meta name="theme-color" content="#0a0a0f" />
+
+  <meta property="og:title" content="TanmayOS — Portfolio" />
+  <meta property="og:description" content="An interactive portfolio designed as a custom Linux desktop environment." />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" href="assets/Floppy-Disk.png?v=1" />
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="styles/animations.css" />
+</head>
+
+<body>
+
+  <div id="boot-screen">
+    <div id="boot-text"></div>
+    <div id="boot-logo"></div>
+    <div id="boot-progress-bar">
+      <div id="boot-progress-fill"></div>
+    </div>
+    <div id="boot-skip-hint">Press any key or click to skip</div>
+  </div>
+
+  <div id="desktop" style="display: none;">
+    <div id="desktop-wallpaper"></div>
+    <div id="desktop-icons"></div>
+  </div>
+
+  <div id="window-container"></div>
+
+  <div id="taskbar" style="display: none;">
+    <button id="taskbar-launcher" title="Applications">start&gt;</button>
+
+    <div class="taskbar-divider"></div>
+
+    <div id="taskbar-apps"></div>
+
+    <div id="system-tray">
+      <div class="tray-icon" title="Wi-Fi: Connected">
+        <svg viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 11.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
+          <path d="M4.3 9.7a5.2 5.2 0 017.4 0l-1.1 1.1a3.5 3.5 0 00-5.2 0L4.3 9.7z" />
+          <path d="M2 7.4a8.7 8.7 0 0112 0L12.9 8.5a7 7 0 00-9.8 0L2 7.4z" />
+        </svg>
+      </div>
+      <div class="tray-icon" title="Volume">
+        <svg viewBox="0 0 16 16" fill="currentColor">
+          <path d="M3 6h2l3-3v10L5 10H3a1 1 0 01-1-1V7a1 1 0 011-1z" />
+          <path d="M10.5 4.5a5 5 0 010 7" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round" />
+        </svg>
+      </div>
+      <div class="tray-icon" title="Battery: 100%">
+        <svg viewBox="0 0 16 16" fill="currentColor">
+          <rect x="1" y="4" width="12" height="8" rx="1" stroke="currentColor" stroke-width="1" fill="none" />
+          <rect x="2.5" y="5.5" width="8" height="5" rx="0.5" fill="currentColor" opacity="0.6" />
+          <rect x="13" y="6" width="2" height="4" rx="0.5" fill="currentColor" />
+        </svg>
+      </div>
+      <div class="taskbar-divider"></div>
+      <div id="tray-clock"></div>
+    </div>
+  </div>
+
+  <div id="app-menu"></div>
+
+  <div id="context-menu"></div>
+
+  <div id="scanline-overlay"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/windowManager.js"></script>
+  <script src="js/taskbar.js"></script>
+  <script src="js/desktop.js"></script>
+  <script src="js/apps/terminal.js"></script>
+  <script src="js/apps/fileExplorer.js"></script>
+  <script src="js/apps/about.js"></script>
+  <script src="js/apps/settings.js"></script>
+  <script src="js/apps/notepad.js"></script>
+  <script src="js/apps/browser.js"></script>
+  <script src="js/boot.js"></script>
+
+  <script>
+    window._tanmayos_start = Date.now();
+
+    Desktop.loadAccentColor();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      Boot.init();
+    });
+
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+    });
+  </script>
+
+</body>
+
+</html>
