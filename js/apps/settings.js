@@ -4,16 +4,7 @@ const SettingsApp = (() => {
   let windowId = null;
   let activeTab = "appearance";
 
-  const ACCENT_COLORS = [
-    { name: "Cyan", value: "#00ffd5" },
-    { name: "Purple", value: "#b44aff" },
-    { name: "Green", value: "#6bff8a" },
-    { name: "Orange", value: "#ff9f43" },
-    { name: "Pink", value: "#ff6b9d" },
-    { name: "Blue", value: "#4a9eff" },
-    { name: "Red", value: "#ff5f57" },
-    { name: "Yellow", value: "#ffd93d" },
-  ];
+
 
   function renderTab(container) {
     const main = container.querySelector(".settings-main");
@@ -32,7 +23,6 @@ const SettingsApp = (() => {
 
   function renderAppearanceTab(main) {
     const currentWallpaper = localStorage.getItem("tanmayos-wallpaper") || "default";
-    const currentAccent = localStorage.getItem("tanmayos-accent") || "#00ffd5";
     const scanlinesEnabled = localStorage.getItem("tanmayos-scanlines") === "true";
     const grayscaleEnabled = localStorage.getItem("tanmayos-grayscale") === "true";
     const windowOpacity = localStorage.getItem("tanmayos-window-opacity") || "0.95";
@@ -62,26 +52,7 @@ const SettingsApp = (() => {
         </div>
       </div>
 
-      <div class="settings-group">
-        <div class="settings-group-title">Accent Color</div>
-        <div class="settings-option">
-          <div>
-            <div class="settings-option-label">Primary Accent</div>
-            <div class="settings-option-desc">Used for highlights and interactive elements</div>
-          </div>
-          <div class="color-picker-swatches">
-            ${ACCENT_COLORS.map(
-              (c) => `
-              <div class="color-swatch ${c.value === currentAccent ? "active" : ""}"
-                   data-color="${c.value}"
-                   title="${c.name}"
-                   style="background: ${c.value};">
-              </div>
-            `
-            ).join("")}
-          </div>
-        </div>
-      </div>
+
 
       <div class="settings-group">
         <div class="settings-group-title">Effects</div>
@@ -129,13 +100,7 @@ const SettingsApp = (() => {
       });
     }
 
-    main.querySelectorAll(".color-swatch").forEach((swatch) => {
-      swatch.addEventListener("click", () => {
-        main.querySelectorAll(".color-swatch").forEach((s) => s.classList.remove("active"));
-        swatch.classList.add("active");
-        Desktop.setAccentColor(swatch.dataset.color);
-      });
-    });
+
 
     main.querySelectorAll(".toggle-switch").forEach((toggle) => {
       toggle.addEventListener("click", () => {

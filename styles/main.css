@@ -8,9 +8,9 @@
   --bg-elevated: #222222;
   --bg-surface: #181818;
 
-  --accent-primary: #33ff33;
-  --accent-secondary: #cc44ff;
-  --accent-tertiary: #ff4444;
+  --accent-primary: #ffffff;
+  --accent-secondary: #cccccc;
+  --accent-tertiary: #aaaaaa;
   --accent-warning: #ffcc00;
   --accent-success: #33ff33;
 
@@ -1422,7 +1422,7 @@ body {
   width: 100%;
   max-width: 100%;
   font-size: 12px;
-  color: #33ff33;
+  color: #ffffff;
   line-height: 1.4;
   white-space: pre-wrap;
 }

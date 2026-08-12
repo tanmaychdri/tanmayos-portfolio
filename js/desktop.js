@@ -103,22 +103,6 @@ const Desktop = (() => {
       name: "Default",
       css: `url('assets/default-wall.png') center/cover no-repeat`,
     },
-    darkgreen: {
-      name: "Dark Green",
-      css: `linear-gradient(180deg, #060a06 0%, #0a120a 50%, #060a06 100%)`,
-    },
-    charcoal: {
-      name: "Charcoal",
-      css: `linear-gradient(180deg, #111 0%, #1a1a1a 50%, #111 100%)`,
-    },
-    deepred: {
-      name: "Deep Red",
-      css: `linear-gradient(180deg, #0a0606 0%, #120808 50%, #0a0606 100%)`,
-    },
-    midnight: {
-      name: "Midnight",
-      css: `linear-gradient(180deg, #060610 0%, #0a0a1a 50%, #060610 100%)`,
-    },
   };
 
   let selectedIcon = null;
@@ -512,17 +496,7 @@ const Desktop = (() => {
     input.click();
   }
 
-  function setAccentColor(color) {
-    document.documentElement.style.setProperty("--accent-primary", color);
-    localStorage.setItem("tanmayos-accent", color);
-  }
 
-  function loadAccentColor() {
-    const saved = localStorage.getItem("tanmayos-accent");
-    if (saved) {
-      document.documentElement.style.setProperty("--accent-primary", saved);
-    }
-  }
 
   function toggleScanlines(enabled) {
     const overlay = document.getElementById("scanline-overlay");
@@ -580,8 +554,6 @@ const Desktop = (() => {
     hideAppMenu,
     setWallpaper,
     uploadWallpaper,
-    setAccentColor,
-    loadAccentColor,
     toggleScanlines,
     toggleGrayscale,
     setWindowOpacity,
