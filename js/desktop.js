@@ -100,8 +100,8 @@ const Desktop = (() => {
 
   const WALLPAPERS = {
     default: {
-      name: "Void",
-      css: `#0c0c0c`,
+      name: "Default",
+      css: `url('assets/default-wall.png') center/cover no-repeat`,
     },
     darkgreen: {
       name: "Dark Green",
