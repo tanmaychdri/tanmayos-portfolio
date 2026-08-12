@@ -103,7 +103,7 @@ const PORTFOLIO_DATA = {
   },
 
   systemInfo: {
-    os: "TanmayOS v1.0.0",
+    os: "TanmayOS v1.2.2",
     kernel: "Web 6.4.2-tanmay",
     shell: "tsh 1.0",
     resolution: "dynamic",

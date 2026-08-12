@@ -23,7 +23,7 @@ const AboutApp = (() => {
         <div class="about-app-container" style="display: flex; gap: 24px; padding: 24px; font-family: var(--font-mono); color: var(--text-primary); background: var(--bg-primary); height: 100%; box-sizing: border-box; align-items: center;">
           <div class="about-ascii" style="white-space: pre; font-size: 16px; line-height: 1.15; color: var(--accent-primary); font-weight: bold; text-shadow: 0 0 5px var(--accent-primary);">${ASCII_ART}</div>
           <div class="about-info" style="display: flex; flex-direction: column; justify-content: center; gap: 12px; flex: 1;">
-            <h2 style="margin: 0; color: var(--text-primary); font-size: 24px; letter-spacing: -0.5px;">TanmayOS <span style="font-size: 14px; color: var(--text-secondary); font-weight: normal;">v1.0</span></h2>
+            <h2 style="margin: 0; color: var(--text-primary); font-size: 24px; letter-spacing: -0.5px;">TanmayOS <span style="font-size: 14px; color: var(--text-secondary); font-weight: normal;">v1.2.2</span></h2>
             <div style="width: 100%; height: 1px; background: #333; margin: 4px 0;"></div>
             <p style="margin: 0; font-size: 15px;"><span style="color: var(--text-secondary);">User:</span> ${PORTFOLIO_DATA.personal.fullName}</p>
             <p style="margin: 0; font-size: 15px;"><span style="color: var(--text-secondary);">Role:</span> ${PORTFOLIO_DATA.personal.title}</p>

@@ -166,8 +166,7 @@ const SettingsApp = (() => {
     main.innerHTML = `
       <div class="settings-about">
         <div class="settings-about-logo">TanmayOS</div>
-        <div class="settings-about-version">Version 1.0.0 (Neon)</div>
-
+        <div class="settings-about-version">Version 1.2.2 (Neon)</div>
         <div class="settings-about-info">
           <div class="about-info-row">
             <span class="about-info-label">OS Name</span>
