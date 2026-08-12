@@ -214,11 +214,33 @@ const Desktop = (() => {
               finalX = Math.max(20, Math.min(finalX, window.innerWidth - GRID_W));
               finalY = Math.max(20, Math.min(finalY, window.innerHeight - GRID_H - 40));
 
-              iconEl.style.left = finalX + "px";
-              iconEl.style.top = finalY + "px";
+              // Check for overlapping icons to swap
+              const allIcons = document.querySelectorAll('.desktop-icon');
+              let overlappingIcon = null;
+              
+              allIcons.forEach(otherIcon => {
+                  if (otherIcon !== iconEl) {
+                      const otherX = parseInt(otherIcon.style.left || 0, 10);
+                      const otherY = parseInt(otherIcon.style.top || 0, 10);
+                      if (otherX === finalX && otherY === finalY) {
+                          overlappingIcon = otherIcon;
+                      }
+                  }
+              });
 
               const positions = JSON.parse(localStorage.getItem("tanmayos-icon-positions") || "{}");
+
+              if (overlappingIcon) {
+                  // Swap position with the overlapping icon
+                  overlappingIcon.style.left = startIconX + "px";
+                  overlappingIcon.style.top = startIconY + "px";
+                  positions[overlappingIcon.dataset.appId] = { x: startIconX, y: startIconY };
+              }
+
+              iconEl.style.left = finalX + "px";
+              iconEl.style.top = finalY + "px";
               positions[app.id] = { x: finalX, y: finalY };
+              
               localStorage.setItem("tanmayos-icon-positions", JSON.stringify(positions));
               
               setTimeout(() => { moved = false; }, 0);
