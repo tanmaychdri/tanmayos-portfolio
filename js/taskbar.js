@@ -25,6 +25,12 @@ const Taskbar = (() => {
       ) {
         Desktop.hideAppMenu();
       }
+      
+      const calendar = document.getElementById("calendar-flyout");
+      if (calendar && !e.target.closest("#calendar-flyout") && !e.target.closest("#taskbar-clock")) {
+        calendar.classList.remove("active");
+      }
+
     });
   }
 
@@ -74,7 +80,7 @@ const Taskbar = (() => {
   }
 
   function startClock() {
-    const clockEl = document.getElementById("tray-clock");
+    const clockEl = document.getElementById("taskbar-clock");
     if (!clockEl) return;
 
     function updateClock() {
@@ -83,15 +89,59 @@ const Taskbar = (() => {
         hour: "2-digit",
         minute: "2-digit",
       });
-      const date = now.toLocaleDateString([], {
-        month: "short",
-        day: "numeric",
-      });
-      clockEl.innerHTML = `${time}<br>${date}`;
+      clockEl.innerHTML = time;
     }
 
     updateClock();
     clockInterval = setInterval(updateClock, 1000);
+    
+    clockEl.style.cursor = "pointer";
+    clockEl.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleCalendar();
+    });
+  }
+
+  function toggleCalendar() {
+    const flyout = document.getElementById("calendar-flyout");
+    if (!flyout) return;
+    
+    if (flyout.classList.contains("active")) {
+      flyout.classList.remove("active");
+    } else {
+      renderCalendar();
+      flyout.classList.add("active");
+    }
+  }
+
+  function renderCalendar() {
+    const flyout = document.getElementById("calendar-flyout");
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth();
+    const today = now.getDate();
+    
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    
+    const monthName = now.toLocaleDateString([], { month: "long", year: "numeric" });
+    const daysOfWeek = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+    
+    let gridHtml = daysOfWeek.map(d => `<div class="calendar-day-header">${d}</div>`).join("");
+    
+    for (let i = 0; i < firstDay; i++) {
+      gridHtml += `<div class="calendar-day empty"></div>`;
+    }
+    
+    for (let d = 1; d <= daysInMonth; d++) {
+      const isToday = d === today ? "today" : "";
+      gridHtml += `<div class="calendar-day ${isToday}">${d}</div>`;
+    }
+    
+    flyout.innerHTML = `
+      <div class="calendar-header">${monthName}</div>
+      <div class="calendar-grid">${gridHtml}</div>
+    `;
   }
 
   return {

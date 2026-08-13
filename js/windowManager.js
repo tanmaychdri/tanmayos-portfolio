@@ -27,8 +27,6 @@ const WindowManager = (() => {
     const defaults = {
       width: 700,
       height: 500,
-      x: 80 + (windowIdCounter % 8) * 30,
-      y: 40 + (windowIdCounter % 8) * 30,
       minWidth: 400,
       minHeight: 300,
       resizable: true,
@@ -40,6 +38,13 @@ const WindowManager = (() => {
     };
 
     const config = { ...defaults, ...options };
+
+    if (config.x === undefined) {
+      config.x = Math.max(0, (window.innerWidth - config.width) / 2) + (windowIdCounter % 8) * 30;
+    }
+    if (config.y === undefined) {
+      config.y = Math.max(0, (window.innerHeight - 48 - config.height) / 2) + (windowIdCounter % 8) * 30;
+    }
 
     const maxX = window.innerWidth - config.width;
     const maxY = window.innerHeight - 48 - config.height;
