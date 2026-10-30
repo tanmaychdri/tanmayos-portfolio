@@ -26,7 +26,6 @@ const TerminalApp = (() => {
   <span class="terminal-highlight">about</span>         Display info about me
   <span class="terminal-highlight">skills</span>        Show my technical skills
   <span class="terminal-highlight">projects</span>      List my projects
-  <span class="terminal-highlight">experience</span>    Show work experience
   <span class="terminal-highlight">education</span>     Show education background
   <span class="terminal-highlight">contact</span>       Display contact information
   <span class="terminal-highlight">social</span>        Show social media links
@@ -93,22 +92,6 @@ const TerminalApp = (() => {
      ${p.description}
      <span class="terminal-dim">Tech:</span> ${p.tech.map((t) => `<span class="terminal-warning">${t}</span>`).join(", ")}
      <span class="terminal-dim">URL:</span>  <span class="terminal-link" onclick="window.open('${p.url}')">${p.url}</span>
-`;
-      });
-      return output;
-    },
-
-    experience: () => {
-      let output = `
-<span class="terminal-highlight terminal-bold">┌──────────────────────────────────────────┐</span>
-<span class="terminal-highlight terminal-bold">│         E X P E R I E N C E              │</span>
-<span class="terminal-highlight terminal-bold">└──────────────────────────────────────────┘</span>
-`;
-      PORTFOLIO_DATA.experience.forEach((e) => {
-        output += `
-  <span class="terminal-highlight terminal-bold">${e.role}</span>
-  <span class="terminal-warning">${e.company}</span> <span class="terminal-dim">│ ${e.period}</span>
-  ${e.description}
 `;
       });
       return output;

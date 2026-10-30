@@ -4,26 +4,26 @@ const PORTFOLIO_DATA = {
   personal: {
     name: "Tanmay",
     fullName: "Tanmay Chaudhari",
-    title: "Full-Stack Developer",
+    title: "Tech Enthusiast | Developer | Computer Science Student",
     bio: "Passionate developer who loves building things that live on the internet. I craft clean, elegant solutions with modern technologies. When I'm not coding, you'll find me experimenting with Linux distros or exploring open-source projects.",
     avatar: null,
     location: "India",
     email: "tanmaychdri@gmail.com",
-    website: "https://tanmay.dev",
+    website: "https://tanmaychaudhari.com",
   },
 
   social: {
-    github: "https://github.com/tanmaynesty",
-    linkedin: "https://linkedin.com/in/tanmaynesty",
-    twitter: "https://twitter.com/tanmaynesty",
+    github: "https://github.com/tanmaychdri",
+    linkedin: "https://linkedin.com/in/tanmaychdri",
+    twitter: "https://twitter.com/tanmaychdri",
   },
 
   skills: {
-    "Languages": ["JavaScript", "Python", "C++", "HTML/CSS"],
+    "Languages": ["JavaScript", "Python", "C/C++", "HTML/CSS"],
     "Frontend": ["React", "Next.js"],
-    "Backend": ["Node.js", "Express", "Django"],
+    // "Backend": ["Node.js", "Express", "Django"],
     "DevOps & Tools": ["Git", "Linux"],
-    "Databases": ["PostgreSQL", "MongoDB", "Firebase"],
+    "Databases": ["Supabase", "Firebase"],
   },
 
   projects: [
@@ -31,40 +31,31 @@ const PORTFOLIO_DATA = {
       name: "CodeAlpha_CYGNUS",
       description: "A full-stack e-commerce web application built as part of the CodeAlpha Full Stack Development Internship.",
       tech: ["HTML", "CSS", "JavaScript", "Django", "SQLite"],
-      url: "https://github.com/tanmaynesty/CodeAlpha_CYGNUS",
+      url: "https://github.com/tanmaychdri/CodeAlpha_CYGNUS",
       type: "folder",
     },
     {
       name: "CodeAlpha_ZENITH",
       description: "A sleek, minimalistic, real-time Project Management Platform with a monochromatic aesthetic built using Django and Vanilla JS.",
       tech: ["HTML", "CSS", "JavaScript", "Django", "SQLite"],
-      url: "https://github.com/tanmaynesty/CodeAlpha_ZENITH",
+      url: "https://github.com/tanmaychdri/CodeAlpha_ZENITH",
       type: "folder",
     },
     {
       name: "Calculator",
       description: "A sleek, modern, and frameless calculator built entirely in Python using tkinter. This Calculator features a custom dark-mode user interface, rounded corners, a slide-out history panel, and a built-in memory system.",
       tech: ["Python", "Tkinter"],
-      url: "https://github.com/tanmaynesty/Calculator",
+      url: "https://github.com/tanmaychdri/Calculator",
       type: "folder",
-    }
-  ],
-
-  experience: [
-    {
-      role: "Junior Developer",
-      company: "CodeWorks",
-      period: "2019 - 2021",
-      description: "Full-stack development using MERN stack. Contributed to open-source projects and internal tooling.",
     }
   ],
 
   education: [
     {
-      degree: "B.Tech in Computer Science",
+      degree: "B.Tech in Computer Science & Engineering",
       institution: "Nagpur University",
       period: "2025 - 2029",
-      description: "Specialized in algorithms, data structures, and systems programming.",
+      // description: "Specialized in algorithms, data structures, and systems programming.",
     },
   ],
 
@@ -143,9 +134,6 @@ Name:     ${PORTFOLIO_DATA.personal.fullName}
 Title:    ${PORTFOLIO_DATA.personal.title}
 Location: ${PORTFOLIO_DATA.personal.location}
 Email:    ${PORTFOLIO_DATA.personal.email}
-
-─── EXPERIENCE ────────────────────────────
-${PORTFOLIO_DATA.experience.map((e) => `\n  ${e.role} @ ${e.company}\n  ${e.period}\n  ${e.description}`).join("\n")}
 
 ─── EDUCATION ─────────────────────────────
 ${PORTFOLIO_DATA.education.map((e) => `\n  ${e.degree}\n  ${e.institution} (${e.period})\n  ${e.description}`).join("\n")}

@@ -1,7 +1,7 @@
 # TanmayOS - Portfolio
 
 Welcome to my portfolio, designed as a custom, Linux styled Operating System!  
-This project showcases my skills, experience, and projects through a nostalgic, old-school operating system interface built entirely from scratch.
+This project showcases my skills and projects through a nostalgic, old-school operating system interface built entirely from scratch.
 
 ## 🚀 Features
 
@@ -25,11 +25,11 @@ To run this project locally, you just need a basic web server. You can use any s
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/tanmaynesty/My-Portfolio.git
+   git clone https://github.com/tanmaychdri/TanmayOS-Portfolio.git
    ```
 2. Navigate to the project directory:
    ```bash
-   cd My-Portfolio
+   cd TanmayOS-Portfolio
    ```
 3. Start a local server (e.g., using npx):
    ```bash
@@ -54,9 +54,8 @@ To run this project locally, you just need a basic web server. You can use any s
 ## 🤝 Contact
 
 Feel free to reach out or check out my other work:
-- **GitHub:** [tanmaynesty](https://github.com/tanmaynesty)
-- **LinkedIn:** [tanmaynesty](https://linkedin.com/in/tanmaynesty)
+- **GitHub:** [tanmaychdri](https://github.com/tanmaychdri)
+- **LinkedIn:** [tanmaychdri](https://linkedin.com/in/tanmaychdri)
 - **Email:** tanmaychdri@gmail.com
 
 ---
-
