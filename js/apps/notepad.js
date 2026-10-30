@@ -1,5 +1,4 @@
 
-
 const NotepadApp = (() => {
   function open() {
     openWithContent(
@@ -22,17 +21,32 @@ const NotepadApp = (() => {
         </div>
         <div class="notepad-editor-wrapper">
           <div class="notepad-line-numbers">${lineNumbersHtml}</div>
-          <textarea class="notepad-editor" spellcheck="false" readonly>${escapeHtml(content)}</textarea>
+          <textarea class="notepad-editor" spellcheck="false" wrap="off" readonly>${escapeHtml(content)}</textarea>
         </div>
       </div>
     `;
 
-    WindowManager.createWindow("notepad", `Notepad — ${fileName}`, contentHtml, {
+    const windowId = WindowManager.createWindow("notepad", `Notepad — ${fileName}`, contentHtml, {
       width: 650,
       height: 450,
       icon: Desktop.ICONS.notepad,
       singleInstance: false,
     });
+
+    const winEl = document.getElementById(windowId);
+    if (winEl) {
+      const editor = winEl.querySelector(".notepad-editor");
+      const lineNumbers = winEl.querySelector(".notepad-line-numbers");
+      if (editor && lineNumbers) {
+        editor.addEventListener("scroll", () => {
+          lineNumbers.scrollTop = editor.scrollTop;
+        });
+        lineNumbers.addEventListener("wheel", (e) => {
+          editor.scrollTop += e.deltaY;
+          e.preventDefault();
+        }, { passive: false });
+      }
+    }
   }
 
   function escapeHtml(text) {
