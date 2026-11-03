@@ -94,7 +94,7 @@ const Desktop = (() => {
     { id: "fileExplorer", label: "Files", icon: ICONS.fileExplorer },
     { id: "settings", label: "Settings", icon: ICONS.settings },
     { id: "notepad", label: "Notepad", icon: ICONS.notepad },
-    { id: "browser", label: "Projects", icon: ICONS.browser },
+    { id: "browser", label: "Browser", icon: ICONS.browser },
     { id: "trash", label: "Trash", icon: ICONS.trash },
   ];
 

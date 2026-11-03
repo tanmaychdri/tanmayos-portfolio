@@ -41,6 +41,7 @@ const TerminalApp = (() => {
   <span class="terminal-highlight">uname</span> <span class="terminal-dim">[-a]</span>   Show system information
   <span class="terminal-highlight">neofetch</span>      Show system info with ASCII art
   <span class="terminal-highlight">history</span>       Show command history
+  <span class="terminal-highlight">browser</span> <span class="terminal-dim">[url]</span> Open web browser
 
   <span class="terminal-dim">Type a command to get started!</span>`;
     },
@@ -342,6 +343,22 @@ nothing to commit, working tree clean ✨</span>`;
 --- ${target} ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss
 </span>`;
+    },
+
+    browser: (args) => {
+      const url = args.join(" ").trim();
+      if (typeof BrowserApp !== "undefined") {
+        setTimeout(() => BrowserApp.open(url || "tanmay://home"), 50);
+      }
+      return `<span class="terminal-dim">Opening Browser${url ? ` at ${url}` : ""}...</span>`;
+    },
+
+    web: (args) => {
+      const url = args.join(" ").trim();
+      if (typeof BrowserApp !== "undefined") {
+        setTimeout(() => BrowserApp.open(url || "tanmay://home"), 50);
+      }
+      return `<span class="terminal-dim">Opening Browser${url ? ` at ${url}` : ""}...</span>`;
     },
 
     cowsay: (args) => {
